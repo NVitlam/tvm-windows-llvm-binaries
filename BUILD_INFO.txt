@@ -1,0 +1,99 @@
+TVM Windows x64 Binaries with LLVM Support
+===========================================
+
+Build Date: November 10, 2025
+Build Platform: Windows 10/11 x64
+Build Duration: ~60-90 minutes
+
+Component Versions
+------------------
+- TVM Commit: c6fb2be79 (from official Apache TVM repository)
+- MLC-LLM Commit: 7b15b196
+- LLVM Version: 18.1.8
+- Compiler: Microsoft Visual Studio 2022 (MSVC v143)
+- CMake Version: 4.1.2
+- Build Type: Release
+
+Build Configuration
+-------------------
+- LLVM Support: ENABLED (ON)
+- CUDA Support: DISABLED (OFF)
+- OpenCL Support: DISABLED (OFF)
+- Vulkan Support: DISABLED (OFF)
+- Metal Support: DISABLED (OFF)
+- Target Platform: Windows x64 only
+
+LLVM Configuration
+------------------
+- LLVM Location: C:/LLVM-Dev/
+- LLVM Dir: C:/LLVM-Dev/lib/cmake/llvm
+- LLVM Codegen: Enabled for CPU inference and model conversion
+
+Critical Dependencies
+---------------------
+- libxml2 (MSVC-compiled via vcpkg): libxml2s.lib
+- Windows SDK: Included with Visual Studio 2022
+- vcpkg: Used for libxml2 dependency management
+
+File Descriptions
+-----------------
+1. tvm.dll (109 MB)
+   - Full TVM library with LLVM codegen support
+   - Required for model compilation and conversion
+   - Contains LLVM-based code generation for x64 targets
+
+2. tvm_runtime.dll (2.5 MB)
+   - Lightweight TVM runtime (no LLVM)
+   - Used for model inference only
+   - Smaller footprint for production deployments
+
+3. tvm_ffi.dll (1.4 MB)
+   - TVM Foreign Function Interface
+   - Python/C++ interop layer
+   - Required for Python bindings
+
+4. tvm_ffi_testing.dll (582 KB)
+   - Testing utilities for TVM FFI
+   - Optional for most use cases
+
+What Makes This Build Special
+------------------------------
+This build includes LLVM support, which is REQUIRED for:
+- MLC-LLM model weight conversion (convert_weight command)
+- MLC-LLM config generation (gen_config command)
+- CPU-based model compilation
+- LLVM IR code generation
+
+The official MLC-LLM pre-built Windows wheels DO NOT include LLVM support,
+making model conversion impossible on Windows without building from source.
+
+Build Challenges Solved
+------------------------
+1. MinGW vs MSVC compatibility issues
+2. LLVM development SDK installation (headers + libs)
+3. libxml2 MSVC format requirements (via vcpkg)
+4. CMake 4.x compatibility with msgpack and sentencepiece
+5. Missing posix_memalign function in MinGW builds
+
+Tested Use Cases
+----------------
+✅ MLC-LLM model weight conversion (Qwen 2.5 3B tested)
+✅ MLC-LLM config generation
+✅ TVM Python package integration
+✅ Model quantization (q4f16_1 tested successfully)
+
+System Requirements
+-------------------
+- Windows 10 version 1809 or later (64-bit)
+- Windows 11 (64-bit)
+- Visual C++ Redistributable 2015-2022 (x64)
+- ~500 MB free disk space for DLLs
+- 16GB+ RAM recommended for model conversion
+
+License
+-------
+Apache License 2.0 (same as TVM and MLC-LLM)
+
+Build Scripts Available
+-----------------------
+See docs/ folder for complete build instructions and troubleshooting guide.
