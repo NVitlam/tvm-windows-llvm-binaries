@@ -91,7 +91,7 @@ git submodule update --init --recursive
 
 ```powershell
 # Download this repository
-git clone https://github.com/YOUR_USERNAME/tvm-windows-llvm-binaries.git
+git clone https://github.com/NVitlam/tvm-windows-llvm-binaries.git
 
 # Copy DLLs to TVM Python package directory
 # Location: mlc-llm\3rdparty\tvm\python\tvm\
@@ -459,10 +459,10 @@ These binaries are provided **as-is** without warranty.
 
 ## 🔗 Quick Links
 
-- 📥 [Download Latest Release](https://github.com/YOUR_USERNAME/tvm-windows-llvm-binaries/releases)
+- 📥 [Download Latest Release](https://github.com/NVitlam/tvm-windows-llvm-binaries/releases)
 - 📖 [Full Build Documentation](docs/BUILD_PROCESS.md)
-- 🐛 [Report Issues](https://github.com/YOUR_USERNAME/tvm-windows-llvm-binaries/issues)
-- 💬 [Discussions](https://github.com/YOUR_USERNAME/tvm-windows-llvm-binaries/discussions)
+- 🐛 [Report Issues](https://github.com/NVitlam/tvm-windows-llvm-binaries/issues)
+- 💬 [Discussions](https://github.com/NVitlam/tvm-windows-llvm-binaries/discussions)
 
 ---
 
